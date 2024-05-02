@@ -1,20 +1,124 @@
 <app-header></app-header>
 <h1 class="text-center mt-5">Sistema del control de calidad del aire</h1>
+<br>
 <div class="container">
     <h5>¿Que es la Calidad del aire?</h5>
     <p>La calidad del aire es una estimación que nos indica el grado de toxinas y polución atmosférica que tiene el aire en una zona. De esta manera, nos da información para saber qué tan perjudicial es ese día para nuestra salud, y con base en ello es que las autoridades nos sugieren qué tan bueno es salir a la calle a hacer ciertas actividades que requieran esfuerzo físico.</p>
+    <br>
     <h5>¿Que es el indice de calidad del aire?</h5>
     <p>El Índice de Calidad del Aire (ICA) es una medida que evalúa la pureza del aire en una determinada área. En la Ciudad de México, el ICA se calcula considerando varios contaminantes atmosféricos, como las partículas PM10 y PM2.5.</p>
-    <!-- <div class="row">
-      <div class="col">
-        <video width="320" height="240" controls>
-          <source src="./assets/pronost.mp4" type="video/mp4">
-        </video>
-      </div>
-      <div class="col">
-        <img src="./assets/pronost2023-06-01.jpeg" alt="" width="300" />
-      </div>
-      <div class="col"></div>
-    </div> -->
+    <br>
+    <h5>¿Quien monitorea la calidad del aire en el pais?</h5>
+    <p>El gobierno federal es el responsable de establecer los estándares para la protección de la salud pública y vigilar su cumplimiento. Estos estándares se encuentran publicados en las Normas Oficiales Mexicanas (NOM) y son de observación obligatoria en todo el país. Las NOM describen los limites permisibles para los contaminantes criterio. Estas normas están condicionadas a una revisión periódica para reflejar la información reciente sobre los efectos en la salud y la gestión de la calidad del aire.</p>
+    <p>En el monitoreo de la calidad del aire se emplean dos tipos de normas: las NOM de salud ambiental que establecen los límites permisibles para los contaminantes criterio, y las NOM técnicas que definen los métodos de medición de los contaminantes criterio.</p>
+    <p>Las NOM en materia de salud vigentes son las siguientes:</p>
+    <br>
+
+    <table class="table">
+      <thead>
+        <tr class="table-info">
+          <th scope="col">Contaminante</th>
+          <th scope="col">NOM</th>
+          <th scope="col">Publicación</th>
+          <th scope="col">Descripción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th class="bg-secondary">Dióxido de azufre (SO2)</th>
+          <td><a href="http://aire.cdmx.gob.mx/descargas/monitoreo/normatividad/NOM-022-SSA1-2019.pdf" target="_blank">NOM-022-SSA1-2019</a></td>
+          <td>20 de agosto de 2019</td>
+          <td>0.075 ppm, promedio aritmético de 3 años consecutivos de los percentiles 99 anuales como promedio horario</td>
+        </tr>
+        <tr>
+          <th class="bg-secondary">Monóxido de carbono (CO)</th>
+          <td><a href="http://aire.cdmx.gob.mx/descargas/monitoreo/normatividad/NOM-021-SSA1-2021.pdf" target="_blank">NOM-021-SSA1-2021</a></td>
+          <td>29 de octubre de 2021</td>
+          <td>26 ppm, promedio horario 9 ppm, promedio móvil de 8 horas
+            </td>
+        </tr>
+        <tr>
+          <th class="bg-secondary">Dióxido de nitrógeno (NO2)</th>
+          <td><a href="http://aire.cdmx.gob.mx/descargas/monitoreo/normatividad/NOM-023-SSA1-2021.pdf" target="_blank">NOM-023-SSA1-2021</a></td>
+          <td>27 de octubre de 2021</td>
+          <td>0.106 ppm, promedio horario 0.021 ppm, promedio anual</td>
+        </tr>
+        <tr>
+          <th class="bg-secondary">Ozono (O3)</th>
+          <td><a href="http://aire.cdmx.gob.mx/descargas/monitoreo/normatividad/NOM-020-SSA1-2021.pdf" target="_blank">NOM-020-SSA1-2021</a></td>
+          <td>28 de octubre de 2021</td>
+          <td>Años 2022-2023:
+            0.090 ppm, promedio horario
+            0.065 ppm, promedio móvil de 8 horas
+            Años 2024-2025:
+            0.090 ppm, promedio horario
+            0.060 ppm, promedio móvil de 8 horas
+            A partir de 2026:
+            0.090 ppm, promedio horario
+            0.051 ppm, promedio móvil de 8 horas
+            </td>
+        </tr>
+        <tr>
+          <th class="bg-secondary">Partículas menores a 10 micrómetros (PM10)</th>
+          <td><a href="http://aire.cdmx.gob.mx/descargas/monitoreo/normatividad/NOM-025-SSA1-2021.pdf" target="_blank">NOM-025-SSA1-2021</a></td>
+          <td>27 de octubre de 2021</td>
+          <td>Años 2022-2023:
+            70 μg/m³, promedio de 24 horas y
+            36 μg/m³, promedio anual
+            Años 2024-2025:
+            60 μg/m³, promedio de 24 horas y
+            28 μg/m³, promedio anual
+            A partir de 2026:
+            50 μg/m³, promedio de 24 horas y
+            20 μg/m³, promedio anual
+            </td>
+        </tr>
+        <tr>
+          <th class="bg-secondary">Partículas menores a 2.5 micrómetros (PM2.5)</th>
+          <td><a href="http://aire.cdmx.gob.mx/descargas/monitoreo/normatividad/NOM-025-SSA1-2021.pdf" target="_blank">NOM-025-SSA1-2021</a></td>
+          <td>27 de octubre de 2021</td>
+          <td>Años 2022-2023:
+            41 μg/m³, promedio de 24 horas y
+            10 μg/m³, promedio anual
+            Años 2024-2025:
+            33 μg/m³, promedio de 24 horas y
+            10 μg/m³, promedio anual
+            A partir de 2026:
+            25 μg/m³, promedio de 24 horas y
+            10 μg/m³, promedio anual            
+            </td>
+        </tr>
+        <tr>
+          <th class="bg-secondary">Plomo (Pb)</th>
+          <td><a href="http://aire.cdmx.gob.mx/descargas/monitoreo/normatividad/NOM-026-SSA1-2021.pdf" target="_blank">NOM-026-SSA1-2021</a></td>
+          <td>29 de octubre de 2021</td>
+          <td>0.5 μg/m³, promedio anual obtenido mediante muestreos manuales de PM10</td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+    <p>Adicionalmente, existen otras dos normas importantes, la NOM-172-SEMARNAT-2019 que establece los lineamientos para la obtención y comunicación del Índice AIRE y SALUD (publicada en 2019 y vigente desde 2020), esta NOM es de observancia para los gobiernos estatales o municipales responsables del monitoreo de la calidad del aire en el país; y la otra norma es la NOM-156-SEMARNAT-2012 que regula el establecimiento y la operación de sistemas de monitoreo de la calidad del aire. Es importante mencionar que el Índice AIRE y SALUD (NOM-172-SEMARNAT-2019) no considera las actualizaciones de las Normas Oficiales Mexicanas en materia de salud realizadas en 2019 y 2021.</p>
+    <table class="table">
+      <thead>
+        <tr class="table-info">
+          <th scope="col">NOM</th>
+          <th scope="col">Publicación</th>
+          <th scope="col">Descripción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="http://aire.cdmx.gob.mx/descargas/monitoreo/normatividad/NOM-156-SEMARNAT-2012.pdf" target="_blank">NOM-156-SEMARNAT-2012</a></td>
+          <td>16 de julio de 2012</td>
+          <td>Establecimiento y operación de sistemas de monitoreo de la calidad del aire</td>
+        </tr>
+        <tr>
+          <td><a href="http://aire.cdmx.gob.mx/descargas/monitoreo/normatividad/NOM-172-SEMARNAT-2019.pdf" target="_blank">NOM-172-SEMARNAT-2019</a></td>
+          <td>20 de noviembre de 2019</td>
+          <td>Lineamientos para la obtención y comunicación del Índice de Calidad del Aire y Riesgos a la Salud</td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
 </div>
 <app-footer></app-footer>
