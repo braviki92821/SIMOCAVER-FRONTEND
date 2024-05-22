@@ -1,0 +1,29 @@
+#pButton {
+    float: left;
+  }
+  
+  #timeline {
+    width: 90%;
+    height: 6px;
+    margin-top: 20px;
+    margin-left: 10px;
+    float: left;
+    -webkit-border-radius: 15px;
+    border-radius: 15px;
+    background: rgba(0, 0, 0, 0.3);
+  }
+  
+  #pButton {
+    margin-top: 12px;
+    cursor: pointer;
+  }
+  
+  #playhead {
+    width: 15px;
+    height: 15px;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    margin-top: -3px;
+    background: black;
+    cursor: pointer;
+  }

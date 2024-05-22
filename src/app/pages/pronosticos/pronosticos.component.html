@@ -6,28 +6,33 @@
     <p>Variable T2 medida en porcentaje se muestra un mapa y su respectiva grafica de medida</p>
     <div class="row">
       <div class="col-4 border border-secondary">
-        <form>
+        <div>
           <div class="mb-3">
             <label class="form-label">Selecciona una fecha (por defecto carga el pronostico de hoy)</label>
-            <input type="date" class="form-control">
+            <input type="date" class="form-control" id="fecha" value=`${fechaActual}` (change)="seleccion()">
           </div>
           <div class="mb-3">
             <label class="form-label">Selecciona variable</label>
-            <select class="form-control">
-              <option value="">Temperatura</option>
-              <option value="">ozono</option>
-              <option value="">Pm10</option>
-              <option value="">Pm2.5</option>
+            <select class="form-control" id="variable" (change)="seleccion()">
+              <option value="T2">Temperatura</option>
+              <option value="Ozono">ozono</option>
+              <option value="Pm10">Pm10</option>
+              <option value="Pm2.5">Pm2.5</option>
             </select>
           </div>
-        </form>
+        </div>
       </div>
       <div class="col-8">
-        <video width="380" height="380" controls class="container">
+        <img src="./assets/T2-Pronostico-2023-06-01h00-00-18.jpeg" id="imgSource" alt="" width="880" height="480">
+        <!-- <video width="380" height="380" controls class="container">
           <source src="./assets/T2-Pronostico-2023-06-01-18h.mp4" type="video/mp4">
-        </video>
-        <caption>sos</caption>
-      </div>
+        </video> -->
+        <div class="input-group mb-3">
+          <button class="input-group-text" id="play-pause" (click)="play()"><i class="bi bi-play"></i></button>
+          <div class="form-floating">
+            <input type="range" class="form-control form-range-lg" name="" id="progress" value="0" step="1" min="0" max="24">
+          </div> 
+        </div>
     </div>
 </div>
 <app-footer></app-footer>
