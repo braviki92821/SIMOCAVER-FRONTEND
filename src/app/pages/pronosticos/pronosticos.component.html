@@ -3,30 +3,31 @@
     <br>
     <h4 class="text-center">Conoce los pronosticos que determinan la calidad del aire y otros factores</h4>
     <br>
-    <p>Variable ALBEDO12M medida en porcentaje se muestra un mapa y su respectiva grafica de medida</p>
+    <p>Variable T2 medida en porcentaje se muestra un mapa y su respectiva grafica de medida</p>
     <div class="row">
-      <div class="col">
-        <video width="480" height="380" controls>
-          <source src="./assets/pronost.mp4" type="video/mp4">
+      <div class="col-4 border border-secondary">
+        <form>
+          <div class="mb-3">
+            <label class="form-label">Selecciona una fecha (por defecto carga el pronostico de hoy)</label>
+            <input type="date" class="form-control">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Selecciona variable</label>
+            <select class="form-control">
+              <option value="">Temperatura</option>
+              <option value="">ozono</option>
+              <option value="">Pm10</option>
+              <option value="">Pm2.5</option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="col-8">
+        <video width="380" height="380" controls class="container">
+          <source src="./assets/T2-Pronostico-2023-06-01-18h.mp4" type="video/mp4">
         </video>
+        <caption>sos</caption>
       </div>
-      <div class="col">
-        <img src="./assets/Figure_1.png" alt="" width="500" />
-      </div>
-      <div class="col"></div>
-    </div>
-    <br>
-    <p>Variable VV medida en porcentaje se muestra un mapa y su respectiva grafica de medida</p>
-    <div class="row">
-      <div class="col">
-        <video width="480" height="380" controls>
-          <source src="./assets/VVvar2023-06-01_00-3A00-3A00.mp4" type="video/mp4">
-        </video>
-      </div>
-      <div class="col">
-        <img src="./assets/Figure_2.png" alt="" width="500" />
-      </div>
-      <div class="col"></div>
     </div>
 </div>
 <app-footer></app-footer>
