@@ -23,12 +23,12 @@
         </div>
       </div>
       <div class="col-8">
-        <img src="./assets/T2-Pronostico-2023-06-01h00-00-18.jpeg" id="imgSource" alt="" width="880" height="480">
+        <img [src]="'http://localhost:3000/uploads/T2-Pronostico-2023-06-01h0-00-18.jpeg'"  id="imgSource" alt="" width="800" height="480">
         <!-- <video width="380" height="380" controls class="container">
           <source src="./assets/T2-Pronostico-2023-06-01-18h.mp4" type="video/mp4">
         </video> -->
         <div class="input-group mb-3">
-          <button class="input-group-text" id="play-pause" (click)="play()"><i class="bi bi-play"></i></button>
+          <button class="input-group-text" id="play-pause" (click)="animation()"><i class="bi bi-play"></i></button>
           <div class="form-floating">
             <input type="range" class="form-control form-range-lg" name="" id="progress" value="0" step="1" min="0" max="24">
           </div> 
