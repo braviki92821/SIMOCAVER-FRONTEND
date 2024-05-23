@@ -3,7 +3,8 @@
     <br>
     <h4 class="text-center">Conoce los pronosticos que determinan la calidad del aire y otros factores</h4>
     <br>
-    <p>Variable T2 medida en porcentaje se muestra un mapa y su respectiva grafica de medida</p>
+    <p>Seleccione una variable y fecha para ver el pronostico</p>
+    <br>
     <div class="row">
       <div class="col-4 border border-secondary">
         <div>
@@ -23,14 +24,11 @@
         </div>
       </div>
       <div class="col-8">
-        <img [src]="'http://localhost:3000/uploads/T2-Pronostico-2023-06-01h0-00-18.jpeg'"  id="imgSource" alt="" width="800" height="480">
-        <!-- <video width="380" height="380" controls class="container">
-          <source src="./assets/T2-Pronostico-2023-06-01-18h.mp4" type="video/mp4">
-        </video> -->
+        <img  id="imgSource" class="img-fluid"  alt="">
         <div class="input-group mb-3">
-          <button class="input-group-text" id="play-pause" (click)="animation()"><i class="bi bi-play"></i></button>
+          <button class="input-group-text"  (click)="animation()"><i id="play-pause"  class="bi bi-play"></i></button>
           <div class="form-floating">
-            <input type="range" class="form-control form-range-lg" name="" id="progress" value="0" step="1" min="0" max="24">
+            <input type="range" (change)="animation()" class="form-control form-range-lg" name="" id="progress" value="0" step="1" min="0" max="24">
           </div> 
         </div>
     </div>

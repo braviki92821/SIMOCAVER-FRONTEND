@@ -11,6 +11,7 @@ export class PronosticosComponent implements OnInit {
 
   public fecha: any
   public btnPlay: any
+  public btnPause: any
   public imgSource: any
   public variable: any
   public fechaActual = new Date().toISOString().split('T')[0];
@@ -23,17 +24,21 @@ export class PronosticosComponent implements OnInit {
   ngOnInit(): void {
     this.fecha = document.querySelector('input[type="date"]')
     this.btnPlay = document.getElementById('progress')
+    this.btnPause = document.getElementById('play-pause')
     this.imgSource = document.getElementById('imgSource')
     this.variable = document.getElementById('variable')
     this.fecha.value = this.fechaActual
-    console.log(this.fecha.value)
-    console.log(this.variable.value)
+    this.seleccion()
   }
 
   animation(): void {
-    if(typeof this.time === "undefined") {
-        this.time = this.play()
+    if(typeof this.time === "undefined" && this.pronosticos.length != 0) {
+      this.btnPause.classList.remove('bi-play') 
+      this.btnPause.classList.add('bi-pause')
+      this.time = this.play()
     } else {
+        this.btnPause.classList.remove('bi-pause')
+        this.btnPause.classList.add('bi-play')
         this.pause(this.play())
         this.pause(this.time)
         this.time = undefined
@@ -45,9 +50,9 @@ export class PronosticosComponent implements OnInit {
     let cont = this.btnPlay.value
     let t = setInterval(() => {
       let file = this.pronosticos[cont].archivo
-      cont++
       this.btnPlay.value = cont
       this.imgSource.src = `http://localhost:3000/uploads/${file}`
+      cont++
       if(cont === 24) {
         clearInterval(t)
         this.btnPlay.value = 0
@@ -64,10 +69,15 @@ export class PronosticosComponent implements OnInit {
   }
 
   seleccion(): void {
-    this.pronosticoService.obtenerPronostico(this.fecha.value).subscribe(datos => {
+    console.log(this.imgSource)
+    this.pronosticoService.obtenerPronostico('2023-06-01').subscribe(datos => {
       console.log(datos) 
-      this.pronosticos = datos.filter( x => x.variable === this.variable.value)   
-       this.animation()
+      if(datos.length == 0) {  
+        this.imgSource.src = './assets/NoImage.jpg'
+        return
+      }
+      this.pronosticos = datos.filter( x => x.variable === this.variable.value)  
+      this.animation()
     })
   }
 
