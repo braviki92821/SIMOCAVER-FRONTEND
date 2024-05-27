@@ -25,10 +25,17 @@
       </div>
       <div class="col-8">
         <img  id="imgSource" class="img-fluid"  alt="">
-        <div class="input-group mb-3">
-          <button class="input-group-text"  (click)="animation()"><i id="play-pause"  class="bi bi-play"></i></button>
-          <div class="form-floating">
-            <input type="range" (change)="animation()" class="form-control form-range-lg" name="" id="progress" value="0" step="1" min="0" max="24">
+        <div class="d-flex">
+          <button class="flex-shrink-0"  (click)="animation()"><i id="play-pause"  class="bi bi-play"></i></button>
+          <div class="flex-grow-1">
+            <input type="range" (change)="animation()" class="w-100" list="rangos" id="progress" value="0" step="1" min="0" max="24">
+            <datalist id="rangos" class="ms-1 w-100 d-flex flex-row justify-content-between sm:hidden">
+              <option value="0">0</option>
+              <option value="6">6</option>
+              <option value="12">12</option>
+              <option value="18">18</option>
+              <option value="24">24</option>
+            </datalist>
           </div> 
         </div>
     </div>

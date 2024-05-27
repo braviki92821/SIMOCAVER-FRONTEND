@@ -70,13 +70,14 @@ export class PronosticosComponent implements OnInit {
 
   seleccion(): void {
     console.log(this.imgSource)
-    this.pronosticoService.obtenerPronostico('2023-06-01').subscribe(datos => {
+    this.pronosticoService.obtenerPronostico(this.fecha.value).subscribe(datos => {
       console.log(datos) 
       if(datos.length == 0) {  
         this.imgSource.src = './assets/NoImage.jpg'
         return
       }
-      this.pronosticos = datos.filter( x => x.variable === this.variable.value)  
+      this.pronosticos = datos.filter( x => x.variable === this.variable.value)
+     // console.log(this.pronosticos.sort(x => x.hora))
       this.animation()
     })
   }
