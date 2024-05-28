@@ -10,11 +10,11 @@
         <div>
           <div class="mb-3">
             <label class="form-label">Selecciona una fecha (por defecto carga el pronostico de hoy)</label>
-            <input type="date" class="form-control" id="fecha" value=`${fechaActual}` (change)="seleccion()">
+            <input type="date" class="form-control" id="fecha" value=`${fechaActual}` (change)="seleccionTest()">
           </div>
           <div class="mb-3">
             <label class="form-label">Selecciona variable</label>
-            <select class="form-control" id="variable" (change)="seleccion()">
+            <select class="form-control" id="variable" (change)="seleccionTest()">
               <option value="T2">Temperatura</option>
               <option value="Ozono">ozono</option>
               <option value="Pm10">Pm10</option>

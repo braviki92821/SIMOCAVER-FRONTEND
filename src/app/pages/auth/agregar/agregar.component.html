@@ -1,0 +1,32 @@
+<app-header-auth></app-header-auth>
+<div class="container">
+    <h2 class="text-center mt-2">Agrega datos de pronostico para esta fecha</h2>
+    <div class="form-floating mt-2">
+        <select (change)="seleccion()" class="form-select" id="selecc" aria-label="Floating label select example">
+          <option value="T2">Temperatura</option>
+          <option value="Ozono">ozono</option>
+          <option value="Pm10">Pm10</option>
+          <option value="Pm2.5">Pm2.5</option>
+        </select>
+        <label for="floatingSelect">Selecciona una variable</label>
+      </div>
+    <table class="table table-success table-hover table-bordered border-primary mt-4">
+        <thead>
+          <tr>
+            <th>Variable</th>
+            <th>Hora</th>
+            <th>Archivo</th>
+            <th>estatus</th>
+          </tr>
+        </thead>
+        <tbody id="rows">
+            <tr *ngFor="let num of tabla">
+                <td class="text-center">{{selecc.value}}</td>
+                <td class="text-center">{{num}}:00</td>
+                <td ><input type="file" id="file{{num}}"> </td>
+                <td>Sin subir</td>
+            </tr>
+        </tbody>
+      </table>
+</div>
+
