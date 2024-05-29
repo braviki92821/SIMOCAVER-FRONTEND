@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { dA } from '@fullcalendar/core/internal-common';
 import { PronosticosService } from 'src/app/services/pronosticos.service';
 
 @Component({
@@ -29,7 +28,7 @@ export class AgregarComponent implements OnInit {
     this.fecha = <string> this.activatedRoute.snapshot.paramMap.get('fecha');
   }
 
-  subir(){
+  subir(): void{
     this.formSubmmited = true
     if(this.formPronostico.invalid) {
       this.formSubmmited = false
@@ -51,18 +50,15 @@ export class AgregarComponent implements OnInit {
   onFileChange(event: any): void {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
-      // this.formPronostico.get('archivo')?.setValue(file)
-      this.formPronostico.patchValue({
-        archivo: file
-      });
+      this.formPronostico.get('archivo')?.setValue(file)
     }
   }
 
-  pronostico() {
-    this.pronosticoService.obtenerPronosticoTs(this.fecha).subscribe(data => {
-      console.log(data)
-    })
-  }
+  // pronostico() {
+  //   this.pronosticoService.obtenerPronosticoTs(this.fecha).subscribe(data => {
+  //     console.log(data)
+  //   })
+  // }
 
   
 }
