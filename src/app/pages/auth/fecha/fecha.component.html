@@ -1,1 +1,38 @@
-<p>fecha works!</p>
+<app-header-auth></app-header-auth>
+<div class="container">
+    <h2 class="text-center mt-5">Datos de la fecha: {{fecha}}</h2>
+
+    <div class="mb-3 form-floating mt-2">
+        <select (change)="seleccion()" class="form-select" id="variable">
+          <option value="T2" [selected]="true">Temperatura</option>
+          <option value="Ozono">ozono</option>
+          <option value="Pm10">Pm10</option>
+          <option value="Pm2.5">Pm2.5</option>
+        </select>
+        <label for="floatingSelect">Selecciona una variable</label>
+      </div>
+
+    <table class="table table-bordered mt-4">
+        <thead>
+            <tr>
+              <th>Variable</th>
+              <th>fecha</th>
+              <th>Hora</th>
+              <th>Estado</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let sos of referencia; let i = index">
+                <td>{{variable.value}}</td>
+                <td>{{fecha}}</td>
+                <td>{{sos}}:00</td>
+                <td><p *ngIf="tabla[i]?.archivo != undefined ; else noFile">archivo subido</p>
+                    <ng-template #noFile><input type="file" id="upload{{i}}" (change)="onFileChange($event)" class="form-input" accept=".pdf,.jpg,.jpeg,.png"> </ng-template></td>
+                <td><button *ngIf="tabla[i]?.archivo != undefined ; else noUpload" class="btn btn-primary">Modificar</button>
+                    <ng-template #noUpload><button (click)="subirpronostico(i)" class="btn btn-warning">Subir Imagen</button></ng-template></td>
+            </tr>
+          </tbody>
+    </table>
+
+</div>

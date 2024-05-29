@@ -26,6 +26,7 @@ export class AgregarComponent implements OnInit {
 
   ngOnInit(): void {
     this.fecha = <string> this.activatedRoute.snapshot.paramMap.get('fecha');
+    this.pronostico()
   }
 
   subir(): void{
@@ -54,11 +55,11 @@ export class AgregarComponent implements OnInit {
     }
   }
 
-  // pronostico() {
-  //   this.pronosticoService.obtenerPronosticoTs(this.fecha).subscribe(data => {
-  //     console.log(data)
-  //   })
-  // }
+  pronostico() {
+    this.pronosticoService.obtenerPronosticoTs(this.fecha).subscribe(data => {
+      console.log(data)
+    })
+  }
 
   
 }

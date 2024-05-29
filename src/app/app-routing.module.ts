@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'inicio', component: InicioComponent },
   { path: 'pronosticos', component: PronosticosComponent }, 
   { path: 'nosotros', component: NosotrosComponent },
-  { path: 'contacto', component: ContactoComponent },
+  { path: 'agradecimientos', component: ContactoComponent },
   { path: 'auth/login', component: LoginComponent },
   { path: 'administracion', component: PanelComponent },
   { path: 'administracion/calendario', component: CalendarioComponent },

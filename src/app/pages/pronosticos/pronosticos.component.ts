@@ -100,14 +100,25 @@ export class PronosticosComponent implements OnInit {
 
   seleccionTest(): void {
     this.pronosticoService.obtenerPronosticoTs(this.fecha.value).subscribe(datos => {
-      if(datos.length == 0) { 
+      console.log(datos)
+      if(datos === null) { 
         this.pronosticosTs = datos
         this.btnPlay.value = '0'
         this.imgSource.src = './assets/NoImage.jpg'
         return
       }
-      this.pronosticosTs = datos.map(x => x.propiedades.filter( x => x.variable === this.variable.value))
-      this.pronosticosTs = this.pronosticosTs[0].sort((a:any, b:any) => a.hora - b.hora )
+
+      this.pronosticosTs = datos.propiedades.filter( x => x.variable === this.variable.value)
+
+      if(this.pronosticosTs.length == 0) {
+        this.imgSource.src = './assets/NoImage.jpg'
+        this.btnPlay.value = '0'
+        clearInterval(this.time)
+        return
+      }
+      
+      // datos.map(x => x.propiedades.filter( x => x.variable === this.variable.value))
+      this.pronosticosTs = this.pronosticosTs.sort((a:any, b:any) => a.hora - b.hora )
       this.animation()
     })
   }

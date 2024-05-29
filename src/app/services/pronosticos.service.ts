@@ -23,8 +23,17 @@ export class PronosticosService {
     return this.http.get<Pronostico[]>(`${url}/pronostico`)
   }
 
-  obtenerPronosticoTs(fecha: string): Observable<PronosticoTs[]> {
-    return this.http.get<PronosticoTs[]>(`${url}/pronosticotest/${fecha}`)
+  subirpronostico(pronostico: any, fecha: string): Observable<Object> {
+    const formData = new FormData() 
+    formData.append('variable', pronostico.variable)
+    formData.append('fecha', fecha)
+    formData.append('hora', pronostico.hora)
+    formData.append('archivo', pronostico.archivo)
+    return this.http.post(`${url}/pronostico`, formData)
+  }
+
+  obtenerPronosticoTs(fecha: string): Observable<PronosticoTs> {
+    return this.http.get<PronosticoTs>(`${url}/pronosticotest/${fecha}`)
   }
 
   obtenerPronosticosTs(): Observable<PronosticoTs[]> {
@@ -32,6 +41,7 @@ export class PronosticosService {
   }
 
   subirPronosticoTs(pronostico: any, fecha: string): Observable<Object> {
+    console.log(pronostico)
     const formData = new FormData()
     formData.append('variable', pronostico.variable)
     formData.append('hora', pronostico.hora)
