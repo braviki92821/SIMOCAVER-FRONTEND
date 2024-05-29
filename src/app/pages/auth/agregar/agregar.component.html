@@ -1,8 +1,9 @@
 <app-header-auth></app-header-auth>
 <div class="container">
     <h2 class="text-center mt-2">Agrega datos de pronostico para esta fecha</h2>
-    <div class="form-floating mt-2">
-        <select (change)="seleccion()" class="form-select" id="selecc" aria-label="Floating label select example">
+    <form [formGroup]="formPronostico" (ngSubmit)="subir()" class="default-form mt-3">
+      <div class="mb-3 form-floating mt-2">
+        <select class="form-select" name="variable" formControlName="variable">
           <option value="T2">Temperatura</option>
           <option value="Ozono">ozono</option>
           <option value="Pm10">Pm10</option>
@@ -10,23 +11,17 @@
         </select>
         <label for="floatingSelect">Selecciona una variable</label>
       </div>
-    <table class="table table-success table-hover table-bordered border-primary mt-4">
-        <thead>
-          <tr>
-            <th>Variable</th>
-            <th>Hora</th>
-            <th>Archivo</th>
-            <th>estatus</th>
-          </tr>
-        </thead>
-        <tbody id="rows">
-            <tr *ngFor="let num of tabla">
-                <td class="text-center">{{selecc.value}}</td>
-                <td class="text-center">{{num}}:00</td>
-                <td ><input type="file" id="file{{num}}"> </td>
-                <td>Sin subir</td>
-            </tr>
-        </tbody>
-      </table>
+      <div class="mb-3">
+        <label class="form-label">Selecciona una hora</label>
+        <select class="form-select" name="hora" formControlName="hora">
+          <option *ngFor="let f of tabla" value="{{f}}">Hora {{f}}:00 </option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="formFile" class="form-label">Selecciona la imagen</label>
+        <input class="form-control" (change)="onFileChange($event)" type="file"  accept=".pdf,.jpg,.jpeg,.png" name="archivo">
+      </div>
+      <button type="submit" class="btn btn-primary">Subir</button>
+    </form>
 </div>
 
