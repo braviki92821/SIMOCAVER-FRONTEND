@@ -14,7 +14,7 @@
 
     <table class="table table-bordered mt-4">
         <thead>
-            <tr>
+            <tr >
               <th>Variable</th>
               <th>fecha</th>
               <th>Hora</th>
@@ -27,9 +27,9 @@
                 <td>{{variable.value}}</td>
                 <td>{{fecha}}</td>
                 <td>{{sos}}:00</td>
-                <td><p *ngIf="tabla[i]?.archivo != undefined ; else noFile">archivo subido</p>
-                    <ng-template #noFile><input type="file" id="upload{{i}}" (change)="onFileChange($event)" class="form-input" accept=".pdf,.jpg,.jpeg,.png"> </ng-template></td>
-                <td><button *ngIf="tabla[i]?.archivo != undefined ; else noUpload" class="btn btn-primary">Modificar</button>
+                <td><p *ngIf="tabla[i]?.archivo != undefined ; else noFile">archivo subido </p> <input type="file" id="upload{{i}}" (change)="onFileChange($event)" class="form-input" accept=".pdf,.jpg,.jpeg,.png">
+                    <ng-template #noFile><p>Archivo sin subir</p></ng-template></td>
+                <td><button *ngIf="tabla[i]?.archivo != undefined ; else noUpload" (click)="modificarPronostico(i)" class="btn btn-primary">Modificar</button>
                     <ng-template #noUpload><button (click)="subirpronostico(i)" class="btn btn-warning">Subir Imagen</button></ng-template></td>
             </tr>
           </tbody>

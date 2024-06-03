@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PronosticosService } from 'src/app/services/pronosticos.service';
 import { Pronostico } from 'src/app/interfaces/Pronostico.interface';
-import { PronosticoTs } from 'src/app/interfaces/PronosticoTs.interface';
 
 @Component({
   selector: 'app-pronosticos',
@@ -99,8 +98,15 @@ export class PronosticosComponent implements OnInit {
   }
 
   seleccionTest(): void {
+
+    const regex = /^[0-9]{4}-(((0[13578]|(10|12))-(0[1-9]|[1-2][0-9]|3[0-1]))|(02-(0[1-9]|[1-2][0-9]))|((0[469]|11)-(0[1-9]|[1-2][0-9]|30)))$/
+
+    if(!regex.test(this.fecha.value)) {
+      alert('Formato de fecha no valido')
+      return
+    }
+
     this.pronosticoService.obtenerPronosticoTs(this.fecha.value).subscribe(datos => {
-      console.log(datos)
       if(datos === null) { 
         this.pronosticosTs = datos
         this.btnPlay.value = '0'

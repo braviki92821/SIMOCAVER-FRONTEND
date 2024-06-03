@@ -29,13 +29,14 @@ export class CalendarioComponent implements OnInit {
   }
 
   handleDateClick(arg: DateClickArg) {
-    this.events.map( (x:any) => {
-      if(x.date === arg.dateStr) {
-          this.router.navigate([`administracion/calendario/fecha/${x.date}`])
-          return
-      }
-      this.router.navigate([`administracion/calendario/agregar/${arg.dateStr}`])
-    })
+  
+    // let index: number = this.events.findIndex((x:any) => x.date === arg.dateStr)
+
+    // if( index === -1) {
+    //   this.router.navigate([`administracion/calendario/agregar/${arg.dateStr}`])
+    //   return
+    // }
+    this.router.navigate([`administracion/calendario/fecha/${arg.dateStr}`])
   }
 
   pronostico(): void{
