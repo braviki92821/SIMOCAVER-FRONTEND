@@ -57,4 +57,8 @@ export class PronosticosService {
     return this.http.put(`${url}/pronosticotest/${fecha}`, formData)
   }
 
+  login() {
+    
+  }
+
 }
