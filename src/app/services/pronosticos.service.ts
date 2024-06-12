@@ -34,11 +34,11 @@ export class PronosticosService {
   }
 
   obtenerPronosticoTs(fecha: string): Observable<PronosticoTs> {
-    return this.http.get<PronosticoTs>(`${url}/pronosticotest/${fecha}`)
+    return this.http.get<PronosticoTs>(`${url}/pronostico/${fecha}`)
   }
 
   obtenerPronosticosTs(): Observable<PronosticoTs[]> {
-    return this.http.get<PronosticoTs[]>(`${url}/pronosticotest`)
+    return this.http.get<PronosticoTs[]>(`${url}/pronostico`)
   }
 
   subirPronosticoTs(pronostico: any, fecha: string): Observable<Object> {
@@ -46,7 +46,11 @@ export class PronosticosService {
     formData.append('variable', pronostico.variable)
     formData.append('hora', pronostico.hora)
     formData.append('archivo', pronostico.archivo)
-    return this.http.post(`${url}/pronosticotest/${fecha}`, formData)
+    return this.http.post(`${url}/pronostico/${fecha}`, formData, {
+      headers: {
+        "Authorization" : `Bearer ${localStorage.getItem('token')}`
+      }
+    })
   }
 
   actualizarPronosticoTs(pronostico: any, fecha: string): Observable<Object> {
@@ -54,11 +58,19 @@ export class PronosticosService {
     formData.append('variable', pronostico.variable)
     formData.append('hora', pronostico.hora)
     formData.append('archivo', pronostico.archivo)
-    return this.http.put(`${url}/pronosticotest/${fecha}`, formData)
+    return this.http.put(`${url}/pronostico/${fecha}`, formData, {
+      headers: {
+        "Authorization" : `Bearer ${localStorage.getItem('token')}`
+      }
+    })
   }
 
-  login() {
-    
+  login(email: string, password: string): Observable<Object> {
+    let body = {
+      email,
+      password
+    }
+    return this.http.post(`${url}/auth/autenticar`, body)
   }
 
 }

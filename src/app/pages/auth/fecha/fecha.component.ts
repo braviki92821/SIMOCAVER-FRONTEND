@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PronosticoTs } from 'src/app/interfaces/PronosticoTs.interface';
 import { PronosticosService } from 'src/app/services/pronosticos.service';
 import SwalFire from 'sweetalert2'
@@ -18,7 +18,7 @@ export class FechaComponent implements OnInit {
   public referencia: number[] = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]
   private regex: RegExp = /^[0-9]{4}-(((0[13578]|(10|12))-(0[1-9]|[1-2][0-9]|3[0-1]))|(02-(0[1-9]|[1-2][0-9]))|((0[469]|11)-(0[1-9]|[1-2][0-9]|30)))$/
 
-  constructor(private activatedRoute:ActivatedRoute, private pronosticoService: PronosticosService) { }
+  constructor(private activatedRoute:ActivatedRoute, private pronosticoService: PronosticosService, private router: Router) { }
 
   ngOnInit(): void {
     this.fecha = <string> this.activatedRoute.snapshot.paramMap.get('fecha');
@@ -60,10 +60,20 @@ export class FechaComponent implements OnInit {
       archivo: file.files?.item(0)
     }
 
-    this.pronosticoService.subirPronosticoTs(pronostico, this.fecha).subscribe( resp => {
+    this.pronosticoService.subirPronosticoTs(pronostico, this.fecha).subscribe( (resp:any) => {
+      SwalFire.fire('Correcto', resp.mensaje, 'success')
       this.pronostico()
     }, (error) => {
       SwalFire.fire('Error', error.error.mensaje, 'error')
+      if(error.error.mensaje == "Token expirado vuelva a iniciar sesion") {
+         localStorage.removeItem('token')
+         this.router.navigate(['/auth/login'])
+      }
+
+      if(error.error.mensaje == "Token alterado o invalido") {
+        localStorage.removeItem('token')
+        this.router.navigate(['/auth/login'])
+      }
     })
   }
 
@@ -79,8 +89,8 @@ export class FechaComponent implements OnInit {
       hora: row,
       archivo: file.files?.item(0)
     }
-    this.pronosticoService.actualizarPronosticoTs(pronostico, this.fecha).subscribe( resp => {
-      console.log(resp)
+    this.pronosticoService.actualizarPronosticoTs(pronostico, this.fecha).subscribe( (resp:any) => {
+      SwalFire.fire('Correcto', resp.mensaje, 'success')
       this.pronostico()
     }, (error) => {
       SwalFire.fire('Error', error.error.mensaje, 'error')
