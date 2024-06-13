@@ -9,6 +9,7 @@ import { PanelComponent } from './pages/auth/panel/panel.component';
 import { CalendarioComponent } from './pages/auth/calendario/calendario.component';
 import { FechaComponent } from './pages/auth/fecha/fecha.component';
 import { AgregarComponent } from './pages/auth/agregar/agregar.component';
+import { AutenticadoGuard } from './guard/autenticado.guard';
 
 
 const routes: Routes = [
@@ -18,10 +19,10 @@ const routes: Routes = [
   { path: 'nosotros', component: NosotrosComponent },
   { path: 'agradecimientos', component: ContactoComponent },
   { path: 'auth/login', component: LoginComponent },
-  { path: 'administracion', component: PanelComponent },
-  { path: 'administracion/calendario', component: CalendarioComponent },
-  { path: 'administracion/calendario/fecha/:fecha', component: FechaComponent },
-  { path: 'administracion/calendario/agregar/:fecha', component: AgregarComponent },
+  { path: 'administracion', component: PanelComponent, canActivate: [AutenticadoGuard] },
+  { path: 'administracion/calendario', component: CalendarioComponent, canActivate: [AutenticadoGuard] },
+  { path: 'administracion/calendario/fecha/:fecha', component: FechaComponent, canActivate: [AutenticadoGuard] },
+  { path: 'administracion/calendario/agregar/:fecha', component: AgregarComponent, canActivate: [AutenticadoGuard] },
   { path: '**', redirectTo: 'inicio', pathMatch: 'full' }
 ];
 

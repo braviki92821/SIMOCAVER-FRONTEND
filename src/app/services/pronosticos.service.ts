@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, catchError, map, of, tap } from 'rxjs';
 import { Pronostico } from 'src/app/interfaces/Pronostico.interface';
 import { PronosticoTs } from 'src/app/interfaces/PronosticoTs.interface';
 import { environment } from 'src/environments/environment';
@@ -71,6 +71,19 @@ export class PronosticosService {
       password
     }
     return this.http.post(`${url}/auth/autenticar`, body)
+  }
+
+  sesion() {
+    return this.http.get(`${url}/auth/validarSesion`,{
+      headers: {
+        "Authorization" : `Bearer ${localStorage.getItem('token')}`
+      }
+    }).pipe( 
+      tap( (resp:any) => {console.log(resp)}),
+      map( resp => true),
+      catchError( error => of(false))
+    )
+   
   }
 
 }

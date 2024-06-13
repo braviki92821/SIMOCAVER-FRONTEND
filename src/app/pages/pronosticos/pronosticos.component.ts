@@ -67,7 +67,7 @@ export class PronosticosComponent implements OnInit {
       let file = this.pronosticosTs[cont].archivo
       this.btnPlay.value = cont.toString()
       //this.imgSource.src = `http://localhost:3000/uploads/${file}`
-      this.imgSource.src = `http://localhost:3000/uploads/test/${file}`
+      this.imgSource.src = `http://localhost:3000/uploads/${this.fecha.value}/${file}`
       cont++
       if(cont === 24) {
         clearInterval(t)

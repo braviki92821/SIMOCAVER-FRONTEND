@@ -4,6 +4,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { ReactiveFormsModule } from '@angular/forms';
+import { JwtModule } from "@auth0/angular-jwt"
+
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './pages/header/header.component';
 import { InicioComponent } from './pages/inicio/inicio.component';
@@ -40,6 +42,11 @@ import { AgregarComponent } from './pages/auth/agregar/agregar.component';
     HttpClientModule,
     FullCalendarModule,
     ReactiveFormsModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter:  () => localStorage.getItem('token')
+      }
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
