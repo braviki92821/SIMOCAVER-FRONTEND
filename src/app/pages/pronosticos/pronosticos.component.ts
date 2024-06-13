@@ -113,9 +113,9 @@ export class PronosticosComponent implements OnInit {
         this.imgSource.src = './assets/NoImage.jpg'
         return
       }
-
+      console.log(datos)
       this.pronosticosTs = datos.propiedades.filter( x => x.variable === this.variable.value)
-
+      
       if(this.pronosticosTs.length == 0) {
         this.imgSource.src = './assets/NoImage.jpg'
         this.btnPlay.value = '0'

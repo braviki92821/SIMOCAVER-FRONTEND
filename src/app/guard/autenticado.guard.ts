@@ -13,6 +13,7 @@ export class AutenticadoGuard implements CanActivate {
     return this.pronosticoService.sesion().pipe(
       tap(autenticado => {
         if(!autenticado) {
+          localStorage.removeItem('token')
           this.router.navigate(['/auth/login'])
         }
       })
