@@ -22,6 +22,7 @@ import { UsuariosComponent } from './pages/auth/usuarios/usuarios.component';
 import { DatabaseComponent } from './pages/auth/database/database.component';
 import { FormOlvidePasswordComponent } from './pages/auth/form-olvide-password/form-olvide-password.component';
 import { ResetPasswordComponent } from './pages/auth/reset-password/reset-password.component';
+import { RespaldoComponent } from './pages/auth/respaldo/respaldo.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { ResetPasswordComponent } from './pages/auth/reset-password/reset-passwo
     DatabaseComponent,
     FormOlvidePasswordComponent,
     ResetPasswordComponent,
+    RespaldoComponent,
   ],
   imports: [
     BrowserModule,

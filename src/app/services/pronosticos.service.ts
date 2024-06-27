@@ -113,6 +113,16 @@ export class PronosticosService {
     return this.http.post(`${url}/auth/reset/${token}`, body)
   }
 
+  eliminarUsuario(id: string, estado: string): Observable<Object> {
+    let body = { id, estado }
+    
+    return this.http.put(`${url}/auth/eliminar`, body, {
+      headers: {
+        "Authorization" : `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+  }
+
   eliminarPronostico(fecha: string, password: string): Observable<Object> {
     let body = {
       password: password
@@ -144,6 +154,14 @@ export class PronosticosService {
         "Authorization" : `Bearer ${localStorage.getItem('token')}`
       }
     })
+  }
+
+  subirImagenes(fecha: string, files:any) {
+    const formData = new FormData()
+    for(let file of files) {
+      formData.append('archivo', file)
+    }
+    return this.http.post(`${url}/imagenes/${fecha}`, formData)
   }
 
 }

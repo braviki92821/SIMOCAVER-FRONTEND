@@ -41,7 +41,7 @@ export class UsuariosComponent implements OnInit {
       })
   }
 
-  nuevoUsuario() {
+  nuevoUsuario(): void {
     if(this.formNuevoUsuario.invalid){
         Swal.fire('Error', 'Campos no validos', 'error')
         return
@@ -54,9 +54,32 @@ export class UsuariosComponent implements OnInit {
     this.pronosticoService.crearUsuario(this.formNuevoUsuario.value).subscribe(datos => {
       Swal.fire('Correcto', 'Usuario Creado correctamente', 'success')
       this.tablaUsuarios()
+      this.formNuevoUsuario.reset()
     }, error => {
       Swal.fire('Error', error.error.mensaje, 'error')
     })
+  }
+
+  accion(id: string, estado: string): void {
+    Swal.fire({
+      title:'Esta accion requiere confirmacion',
+      text: '¿Esta seguro de realizar esta accion?',
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Cambiar",
+      cancelButtonText: "Cancelar"
+    }).then((result)=> {
+      if (result.isConfirmed) {
+        this.pronosticoService.eliminarUsuario(id, estado).subscribe((resp:any) => {
+          this.tablaUsuarios()
+          Swal.fire('Correcto', resp.mensaje, 'success')
+        }, error => {
+          Swal.fire('Error', error.error.mensaje, 'error')
+        })
+      }
+    })
+
   }
 
 }

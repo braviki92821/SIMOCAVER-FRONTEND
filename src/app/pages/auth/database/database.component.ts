@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PronosticoTs } from 'src/app/interfaces/PronosticoTs.interface';
 import { PronosticosService } from 'src/app/services/pronosticos.service';
+import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-database',
@@ -12,7 +14,7 @@ import Swal from 'sweetalert2';
 export class DatabaseComponent implements OnInit {
 
   public datos: PronosticoTs[]
-
+  private url = environment.urlBackend
   constructor(private pronosticoService: PronosticosService, private router: Router) { }
 
   ngOnInit(): void {
@@ -53,6 +55,42 @@ export class DatabaseComponent implements OnInit {
            }
          })
       }
+    })
+
+  }
+
+  fecha(date: string): void {
+    this.router.navigate([`/administracion/calendario/fecha/${date}`])
+  }
+
+  descargarImagenes(fecha:string) {
+    const a = document.createElement("a");
+    this.pronosticoService.obtenerPronosticoTs(fecha).subscribe(datos => {
+      datos.propiedades.forEach(element => {
+        a.href = `${this.url}/Uploads/${fecha}/${element.archivo}`
+        a.download= element.archivo
+        a.click();
+      })
+      datos.graficas.forEach(element => {
+        a.href = `${this.url}/Uploads/${fecha}/${element.archivo}`
+        a.download= element.archivo
+        a.click();
+      })
+    })
+  }
+
+  subirImagenes(fecha:string) {
+    const input = document.createElement('input')
+    input.type = "file"
+    input.multiple = true
+    input.click()
+    input.addEventListener('change', (e:any) => {
+        console.log(e.target.files)
+        this.pronosticoService.subirImagenes(fecha, e.target.files).subscribe((resp:any) =>{
+          Swal.fire('Correcto', resp.mensaje, 'error')
+        }, error => {
+          Swal.fire('Error', error.error.mensaje, 'error')
+        })
     })
 
   }

@@ -7,6 +7,7 @@
             <th>_id</th>
             <th>fecha</th>
             <th>visualizar</th>
+            <th>Imagenes</th>
             <th>acciones</th>
           </tr>
         </thead>
@@ -14,7 +15,9 @@
           <tr *ngFor="let pronosticos of datos">
             <td>{{pronosticos._id}}</td>
             <td>{{pronosticos.fecha}}</td>
-            <td><button>Mostrar</button></td>
+            <td><button class="btn btn-primary" (click)="fecha(pronosticos.fecha)" >Mostrar</button></td>
+            <td><button class="btn btn-primary" (click)="descargarImagenes(pronosticos.fecha)">Decargar imagenes</button>
+                <button class="btn btn-primary ms-2" (click)="subirImagenes(pronosticos.fecha)">Subir Imagenes</button></td>
             <td><button class="btn btn-warning" (click)="eliminar(pronosticos.fecha)">Eliminar</button></td>
           </tr>
         </tbody>

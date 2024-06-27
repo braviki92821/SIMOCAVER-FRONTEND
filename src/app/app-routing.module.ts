@@ -13,6 +13,7 @@ import { UsuariosComponent } from './pages/auth/usuarios/usuarios.component';
 import { DatabaseComponent } from './pages/auth/database/database.component';
 import { FormOlvidePasswordComponent } from './pages/auth/form-olvide-password/form-olvide-password.component';
 import { ResetPasswordComponent } from './pages/auth/reset-password/reset-password.component';
+import { RespaldoComponent } from './pages/auth/respaldo/respaldo.component';
 
 
 const routes: Routes = [
@@ -29,6 +30,7 @@ const routes: Routes = [
   { path: 'administracion/calendario/fecha/:fecha', component: FechaComponent, canActivate: [AutenticadoGuard] },
   { path: 'administracion/usuarios', component: UsuariosComponent, canActivate: [AutenticadoGuard] },
   { path: 'administracion/datos', component: DatabaseComponent, canActivate: [AutenticadoGuard] },
+  { path: 'administracion/respaldo', component: RespaldoComponent, canActivate: [AutenticadoGuard] },
   { path: '**', redirectTo: 'inicio', pathMatch: 'full' }
 ];
 

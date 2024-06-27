@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PronosticosService } from 'src/app/services/pronosticos.service';
 import { Pronostico } from 'src/app/interfaces/Pronostico.interface';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-pronosticos',
@@ -19,6 +20,7 @@ export class PronosticosComponent implements OnInit {
   public time: any
   public pronosticos: Pronostico[]
   public pronosticosTs: any
+  private url = environment.urlBackend
 
   constructor(private pronosticoService: PronosticosService) { 
   }
@@ -54,7 +56,7 @@ export class PronosticosComponent implements OnInit {
     let t = setInterval(() => {
       let file = this.pronosticosTs[cont].archivo
       this.btnPlay.value = cont.toString()
-      this.imgSource.src = `http://192.168.1.45/back/uploads/${this.fecha.value}/${file}`
+      this.imgSource.src = `${this.url}/uploads/${this.fecha.value}/${file}`
       cont++
       if(cont === 24) {
         //clearInterval(t)

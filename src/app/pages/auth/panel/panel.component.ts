@@ -32,7 +32,7 @@ export class PanelComponent implements OnInit {
       return
     }
     
-      Swal.fire({
+    Swal.fire({
         title: '¿Estas Seguro?',
         text: 'Volveras a iniciar sesion',
         icon: 'warning',
@@ -41,12 +41,12 @@ export class PanelComponent implements OnInit {
         cancelButtonColor: '#d33',
         confirmButtonText: 'Si',
         cancelButtonText: 'Cancelar'
-      }).then((result)=> {
+    }).then((result)=> {
         if(result.value) {
           localStorage.removeItem('token')
           this.router.navigate(['/auth/login'])
         }
-      })
+    })
   }
 
 }

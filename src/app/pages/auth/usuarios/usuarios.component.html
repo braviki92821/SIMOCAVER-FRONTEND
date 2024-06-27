@@ -4,7 +4,7 @@
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#nuevoUsuarioModal">
        Nuevo Usuario
     </button>
-      
+    <button type="button" class="btn btn-warning ms-3">Bitacora</button>
     <table class="table table-bordered mt-4">
         <thead>
           <tr>
@@ -19,8 +19,8 @@
             <td>{{user.nombre}}</td>
             <td>{{user.email}}</td>
             <td>{{user.tipoUsuario}}</td>
-            <td><button *ngIf="user.estado === 'activo'; else disable" class="btn btn-warning">Inhabilitar</button>
-                <ng-template #disable class="btn btn-primary">Activar<button></button></ng-template></td>
+            <td><button *ngIf="user.estado === 'activo'; else disable" (click)="accion(user._id, user.estado)" class="btn btn-warning">Inhabilitar</button>
+                <ng-template #disable><button class="btn btn-primary" (click)="accion(user._id, user.estado)">Activar</button></ng-template></td>
           </tr>
         </tbody>
     </table>
