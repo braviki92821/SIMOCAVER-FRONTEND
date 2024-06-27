@@ -24,8 +24,11 @@
         <tr>
           <td>{{variable.value}}</td>
           <td>{{fecha}}</td>
-          <td><input type="file" name="" id=""></td>
-          <td>upload</td>
+          <td><p *ngIf="grafica[0]?.archivo != undefined; else noGrafica">archivo subido</p>
+               <ng-template #noGrafica><p>Archivo sin subir</p></ng-template>
+               <input type="file" id="grafica" class="form-input" accept=".pdf,.jpg,.jpeg,.png"></td>
+          <td><button class="btn btn-primary" *ngIf="grafica[0]?.archivo != undefined; else noUplo" (click)="modificarGrafica()">Modificar</button>
+              <ng-template #noUplo><button class="btn btn-warning" (click)="subirGrafica()">Subir Archivo</button></ng-template></td>
         </tr>
       </tbody>
     </table>
@@ -44,9 +47,9 @@
                 <td>{{variable.value}}</td>
                 <td>{{fecha}}</td>
                 <td>{{sos}}:00</td>
-                <td><p *ngIf="tabla[i]?.archivo != undefined ; else noFile">archivo subido </p> <input type="file" id="upload{{i}}" (change)="onFileChange($event)" class="form-input" accept=".pdf,.jpg,.jpeg,.png">
+                <td><p *ngIf="trueIndex(i) != -1 ;else noFile">Archivo subido </p> <input type="file" id="upload{{i}}" (change)="onFileChange($event)" class="form-input" accept=".pdf,.jpg,.jpeg,.png">
                     <ng-template #noFile><p>Archivo sin subir</p></ng-template></td>
-                <td><button *ngIf="tabla[i]?.archivo != undefined ; else noUpload" (click)="modificarPronostico(i)" class="btn btn-primary">Modificar</button>
+                <td><button *ngIf="trueIndex(i) != -1 ; else noUpload" (click)="modificarPronostico(i)" (click)="modificarGrafica()" class="btn btn-primary">Modificar</button>
                     <ng-template #noUpload><button (click)="subirpronostico(i)" class="btn btn-warning">Subir Imagen</button></ng-template></td>
             </tr>
           </tbody>

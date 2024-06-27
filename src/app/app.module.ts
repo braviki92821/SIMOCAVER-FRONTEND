@@ -18,7 +18,10 @@ import { PanelComponent } from './pages/auth/panel/panel.component';
 import { CalendarioComponent } from './pages/auth/calendario/calendario.component';
 import { FechaComponent } from './pages/auth/fecha/fecha.component';
 import { HeaderAuthComponent } from './pages/auth/header-auth/header-auth.component';
-import { AgregarComponent } from './pages/auth/agregar/agregar.component';
+import { UsuariosComponent } from './pages/auth/usuarios/usuarios.component';
+import { DatabaseComponent } from './pages/auth/database/database.component';
+import { FormOlvidePasswordComponent } from './pages/auth/form-olvide-password/form-olvide-password.component';
+import { ResetPasswordComponent } from './pages/auth/reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,10 @@ import { AgregarComponent } from './pages/auth/agregar/agregar.component';
     CalendarioComponent,
     FechaComponent,
     HeaderAuthComponent,
-    AgregarComponent,
+    UsuariosComponent,
+    DatabaseComponent,
+    FormOlvidePasswordComponent,
+    ResetPasswordComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,61 @@
+<app-header-auth></app-header-auth>
+<div class="container">
+    <h2 class="text-center">Usuarios</h2>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#nuevoUsuarioModal">
+       Nuevo Usuario
+    </button>
+      
+    <table class="table table-bordered mt-4">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Correo</th>
+            <th>Tipo</th>
+            <th>acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of usuarios">
+            <td>{{user.nombre}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.tipoUsuario}}</td>
+            <td><button *ngIf="user.estado === 'activo'; else disable" class="btn btn-warning">Inhabilitar</button>
+                <ng-template #disable class="btn btn-primary">Activar<button></button></ng-template></td>
+          </tr>
+        </tbody>
+    </table>
+
+    <div class="modal fade" id="nuevoUsuarioModal" tabindex="-1" aria-labelledby="nuevoUsuarioModal" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Crear Nuevo Usuario</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+               <form [formGroup]="formNuevoUsuario" (ngSubmit)="nuevoUsuario()">
+                <div class="mb-3">
+                    <label class="form-label">Nombre</label>
+                    <input type="text" class="form-control" name="nombre" formControlName="nombre" >
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Correo</label>
+                    <input type="email" class="form-control" name="email" formControlName="email" >
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Tipo</label>
+                    <select class="form-select" name="tipoUsuario" formControlName="tipoUsuario">
+                        <option value="Administrador" [selected]="true">Administrador</option>
+                        <option value="Usuario">Usuario</option>
+                    </select>
+                </div>
+                <input type="submit" class="btn btn-primary" value="Crear Usuario">
+               </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>

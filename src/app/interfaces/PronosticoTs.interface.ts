@@ -6,4 +6,8 @@ export interface PronosticoTs {
         hora: number
         archivo: string
     }]
+    graficas: [{
+        variable: string,
+        archivo: string
+    }]
 }

@@ -1,5 +1,7 @@
+import { trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-panel',
@@ -8,25 +10,43 @@ import { Router } from '@angular/router';
 })
 export class PanelComponent implements OnInit {
 
-  public calendario: HTMLDivElement
-
   constructor(private router:Router) { }
 
   ngOnInit(): void {
-    this.calendario = <HTMLDivElement> document.getElementById('calendario')
+  }
+
+  mostrarAnimacion(div: string){
+    //this.calendario.classList.add('bg-secondary')
+    let divElement: HTMLDivElement = <HTMLDivElement>document.getElementById(div) 
+    divElement.children[0].classList.add('bg-secondary')
+  }
+
+  quitarAnimacion(div: string) {
+    let divElement: HTMLDivElement = <HTMLDivElement>document.getElementById(div) 
+    divElement.children[0].classList.remove('bg-secondary')
+  }
+
+  divAccion(div: string) {
+    if(div != 'close') {
+      this.router.navigate([`/administracion/${div}`])
+      return
+    }
     
-  }
-
-  mostrarAnimacion(){
-    this.calendario.classList.add('bg-secondary')
-  }
-
-  quitarAnimacion() {
-    this.calendario.classList.remove('bg-secondary')
-  }
-
-  calendarioLink() {
-    this.router.navigate(['/administracion/calendario'])
+      Swal.fire({
+        title: '¿Estas Seguro?',
+        text: 'Volveras a iniciar sesion',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d60',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si',
+        cancelButtonText: 'Cancelar'
+      }).then((result)=> {
+        if(result.value) {
+          localStorage.removeItem('token')
+          this.router.navigate(['/auth/login'])
+        }
+      })
   }
 
 }

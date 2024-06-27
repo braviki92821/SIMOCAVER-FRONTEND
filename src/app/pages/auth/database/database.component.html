@@ -1,0 +1,22 @@
+<app-header-auth></app-header-auth>
+<div class="container">
+    <h2 class="text-center">Datos de SIMOCAVER</h2>
+    <table class="table table-bordered mt-4">
+        <thead>
+          <tr>
+            <th>_id</th>
+            <th>fecha</th>
+            <th>visualizar</th>
+            <th>acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let pronosticos of datos">
+            <td>{{pronosticos._id}}</td>
+            <td>{{pronosticos.fecha}}</td>
+            <td><button>Mostrar</button></td>
+            <td><button class="btn btn-warning" (click)="eliminar(pronosticos.fecha)">Eliminar</button></td>
+          </tr>
+        </tbody>
+    </table>
+</div>

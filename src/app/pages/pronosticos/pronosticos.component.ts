@@ -7,6 +7,7 @@ import { Pronostico } from 'src/app/interfaces/Pronostico.interface';
   templateUrl: './pronosticos.component.html',
   styleUrls: ['./pronosticos.component.css']
 })
+
 export class PronosticosComponent implements OnInit {
 
   public fecha: HTMLInputElement
@@ -29,22 +30,10 @@ export class PronosticosComponent implements OnInit {
     this.imgSource = <HTMLImageElement> document.getElementById('imgSource')
     this.variable = <HTMLSelectElement> document.getElementById('variable')
     this.fecha.value = this.fechaActual
-    //this.seleccion()
     this.seleccionTest()
   }
 
   animation(): void {
-    // if(typeof this.time === "undefined" && this.pronosticos.length != 0) {
-    //   this.btnPause.classList.remove('bi-play') 
-    //   this.btnPause.classList.add('bi-pause')
-    //   this.time = this.play()
-    // } else {
-    //     this.btnPause.classList.remove('bi-pause')
-    //     this.btnPause.classList.add('bi-play')
-    //     this.pause(this.play())
-    //     this.pause(this.time)
-    //     this.time = undefined
-    // }
 
     if(typeof this.time === "undefined" && this.pronosticosTs.length != 0) {
       this.btnPause.classList.remove('bi-play') 
@@ -63,16 +52,15 @@ export class PronosticosComponent implements OnInit {
   play(): NodeJS.Timeout  {
     let cont: number = Number(this.btnPlay.value)
     let t = setInterval(() => {
-      //let file = this.pronosticos[cont].archivo
       let file = this.pronosticosTs[cont].archivo
       this.btnPlay.value = cont.toString()
-      //this.imgSource.src = `http://localhost:3000/uploads/${file}`
-      this.imgSource.src = `http://localhost:3000/uploads/${this.fecha.value}/${file}`
+      this.imgSource.src = `http://192.168.1.45/back/uploads/${this.fecha.value}/${file}`
       cont++
       if(cont === 24) {
-        clearInterval(t)
+        //clearInterval(t)
         this.btnPlay.value = '0'
-        this.time = undefined
+        cont = 0
+        //this.time = undefined
       }
     }, 1000)
     return t
@@ -113,7 +101,7 @@ export class PronosticosComponent implements OnInit {
         this.imgSource.src = './assets/NoImage.jpg'
         return
       }
-      console.log(datos)
+
       this.pronosticosTs = datos.propiedades.filter( x => x.variable === this.variable.value)
       
       if(this.pronosticosTs.length == 0) {
@@ -123,7 +111,6 @@ export class PronosticosComponent implements OnInit {
         return
       }
       
-      // datos.map(x => x.propiedades.filter( x => x.variable === this.variable.value))
       this.pronosticosTs = this.pronosticosTs.sort((a:any, b:any) => a.hora - b.hora )
       this.animation()
     })
