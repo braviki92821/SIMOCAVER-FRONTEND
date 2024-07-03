@@ -61,10 +61,8 @@ export class FechaComponent implements OnInit {
       archivo: file.files?.item(0)
     }
 
-    this.pronosticoService.subirPronosticoTs(pronostico, this.fecha).subscribe( (resp:any) => {
-      SwalFire.fire('Correcto', resp.mensaje, 'success')
-      
-      this.pronostico()
+    this.pronosticoService.subirPronosticoTs(pronostico, this.fecha).subscribe((resp) => {
+      SwalFire.fire('Correcto', resp.mensaje, 'success')   
     }, (error) => {
       SwalFire.fire('Error', error.error.mensaje, 'error')
       if(error.error.mensaje == "Token expirado vuelva a iniciar sesion") {
@@ -76,6 +74,8 @@ export class FechaComponent implements OnInit {
         localStorage.removeItem('token')
         this.router.navigate(['/auth/login'])
       }
+    }, () => {
+      this.pronostico()
     })
   }
 
@@ -91,11 +91,12 @@ export class FechaComponent implements OnInit {
       hora: row,
       archivo: file.files?.item(0)
     }
-    this.pronosticoService.actualizarPronosticoTs(pronostico, this.fecha).subscribe( (resp:any) => {
+    this.pronosticoService.actualizarPronosticoTs(pronostico, this.fecha).subscribe(resp => {
       SwalFire.fire('Correcto', resp.mensaje, 'success')
-      this.pronostico()
     }, (error) => {
       SwalFire.fire('Error', error.error.mensaje, 'error')
+    },() => {
+      this.pronostico()
     })
   }
 
@@ -109,7 +110,7 @@ export class FechaComponent implements OnInit {
     return this.tabla.findIndex((x:any) => x.hora === index)
   }
 
-  subirGrafica() {
+  subirGrafica(): void {
     let file: HTMLInputElement = <HTMLInputElement> document.getElementById('grafica')
     if(file.files?.item(0) === null) {
       SwalFire.fire('Mensaje de Error', 'No se ha seleccionado un archivo', 'error')
@@ -121,9 +122,8 @@ export class FechaComponent implements OnInit {
       archivo: file.files?.item(0)
     }
 
-    this.pronosticoService.subirGrafica(grafica, this.fecha).subscribe((datos:any) => {
+    this.pronosticoService.subirGrafica(grafica, this.fecha).subscribe(datos => {
       SwalFire.fire('Correcto', datos.mensaje, 'success')
-      this.pronostico()
     }, error => {
       SwalFire.fire('Error', error.error.mensaje, 'error')
       if(error.error.mensaje == "Token expirado vuelva a iniciar sesion") {
@@ -135,10 +135,12 @@ export class FechaComponent implements OnInit {
         localStorage.removeItem('token')
         this.router.navigate(['/auth/login'])
       }
+    }, () => {
+      this.pronostico()
     })
   }
 
-  modificarGrafica() {
+  modificarGrafica(): void {
     let file: HTMLInputElement = <HTMLInputElement> document.getElementById('grafica')
     if(file.files?.item(0) === null) {
       SwalFire.fire('Mensaje de Error', 'No se ha seleccionado un archivo', 'error')
@@ -150,9 +152,8 @@ export class FechaComponent implements OnInit {
       archivo: file.files?.item(0)
     }
 
-    this.pronosticoService.actualizarGrafica(grafica, this.fecha).subscribe((datos:any) => {
+    this.pronosticoService.actualizarGrafica(grafica, this.fecha).subscribe(datos => {
       SwalFire.fire('Correcto', datos.mensaje, 'success')
-      this.pronostico()
     }, error => {
       SwalFire.fire('Error', error.error.mensaje, 'error')
       if(error.error.mensaje == "Token expirado vuelva a iniciar sesion") {
@@ -164,6 +165,8 @@ export class FechaComponent implements OnInit {
         localStorage.removeItem('token')
         this.router.navigate(['/auth/login'])
       }
+    }, () => {
+       this.pronostico()
     })
   }
 }

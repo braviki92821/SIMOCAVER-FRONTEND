@@ -19,7 +19,6 @@ export class CalendarioComponent implements OnInit {
   constructor(private pronosticoService: PronosticosService, private router: Router) { }
 
   ngOnInit(): void {
-    //this.pronostico()
     this.pronosticoTest()
     this.calendarOptions = {
       initialView: 'dayGridMonth',
@@ -29,24 +28,7 @@ export class CalendarioComponent implements OnInit {
   }
 
   handleDateClick(arg: DateClickArg) {
-  
-    // let index: number = this.events.findIndex((x:any) => x.date === arg.dateStr)
-
-    // if( index === -1) {
-    //   this.router.navigate([`administracion/calendario/agregar/${arg.dateStr}`])
-    //   return
-    // }
     this.router.navigate([`administracion/calendario/fecha/${arg.dateStr}`])
-  }
-
-  pronostico(): void{
-    this.pronosticoService.obtenerPronosticos().subscribe(datos => {
-      let data: Object[] = []
-      datos.map(x => {
-        data.push({ title: x.variable, date: x.fecha, backgroundColor: 'blue' })
-      })
-      this.events = data
-    })
   }
 
   pronosticoTest(): void{

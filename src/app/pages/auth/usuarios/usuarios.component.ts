@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { Bitacora } from 'src/app/interfaces/Bitacora.inteface';
 import { Usuario } from 'src/app/interfaces/Usuario.interface';
 import { PronosticosService } from 'src/app/services/pronosticos.service';
 import Swal from 'sweetalert2';
@@ -14,6 +15,7 @@ import Swal from 'sweetalert2';
 export class UsuariosComponent implements OnInit {
 
   public usuarios: Usuario[]
+  public bitacora: Bitacora[]
   private roles: String[] = ['Administrador', 'Usuario']
 
   public formNuevoUsuario: FormGroup = this.fb.group({
@@ -33,12 +35,19 @@ export class UsuariosComponent implements OnInit {
       return
     }
     this.tablaUsuarios()
+    this.tablaBitacora()
   }
 
   tablaUsuarios(): void {
       this.pronosticoService.obtenerUsuarios().subscribe(data => {
           this.usuarios = data
       })
+  }
+
+  tablaBitacora(): void {
+    this.pronosticoService.obtenerBitacora().subscribe(datos => {
+      this.bitacora = datos
+    })
   }
 
   nuevoUsuario(): void {
@@ -52,11 +61,12 @@ export class UsuariosComponent implements OnInit {
       return
     }
     this.pronosticoService.crearUsuario(this.formNuevoUsuario.value).subscribe(datos => {
-      Swal.fire('Correcto', 'Usuario Creado correctamente', 'success')
-      this.tablaUsuarios()
-      this.formNuevoUsuario.reset()
+      Swal.fire('Correcto', datos.mensaje, 'success')
     }, error => {
       Swal.fire('Error', error.error.mensaje, 'error')
+    }, () => {
+      this.tablaUsuarios()
+      this.formNuevoUsuario.reset()
     })
   }
 
@@ -71,11 +81,12 @@ export class UsuariosComponent implements OnInit {
       cancelButtonText: "Cancelar"
     }).then((result)=> {
       if (result.isConfirmed) {
-        this.pronosticoService.eliminarUsuario(id, estado).subscribe((resp:any) => {
-          this.tablaUsuarios()
+        this.pronosticoService.eliminarUsuario(id, estado).subscribe(resp => {
           Swal.fire('Correcto', resp.mensaje, 'success')
         }, error => {
           Swal.fire('Error', error.error.mensaje, 'error')
+        }, () => {
+          this.tablaUsuarios()
         })
       }
     })

@@ -17,13 +17,18 @@ export class RespaldoComponent implements OnInit {
 
   descargar(): void{
     this.pronosticoService.obtenerPronosticosTs().subscribe(resp => {
-      const a = document.createElement("a");
-      const archivo = new Blob([JSON.stringify(resp, undefined, 2)], { type: 'application/json;charset=utf-8' });
-      const urla = URL.createObjectURL(archivo);
-      a.href = urla;
-      a.download = 'CopiaSeguridadDatos';
-      a.click();
-      URL.revokeObjectURL(urla);
+
+      if(resp.length != 0) {
+        const a = document.createElement("a");
+        const archivo = new Blob([JSON.stringify(resp, undefined, 2)], { type: 'application/json;charset=utf-8' });
+        const urla = URL.createObjectURL(archivo);
+        a.href = urla;
+        a.download = 'CopiaSeguridadDatos';
+        a.click();
+        URL.revokeObjectURL(urla);
+        return
+      }
+      Swal.fire('Error', 'No hay datos para descargar', 'error')
     }, error => {
       Swal.fire('Error', error.error.mensaje, 'error')
     })

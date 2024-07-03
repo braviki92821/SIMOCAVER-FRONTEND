@@ -14,7 +14,7 @@
           </div>
           <div class="mb-3">
             <label class="form-label">Selecciona variable</label>
-            <select class="form-control" id="variable" (change)="seleccionTest()">
+            <select class="form-control" #variable id="variable" (change)="seleccionTest()">
               <option value="T2">Temperatura</option>
               <option value="Ozono">ozono</option>
               <option value="Pm10">Pm10</option>
@@ -22,7 +22,7 @@
             </select>
           </div>
           <div class="mb-3">
-            <button class="btn btn-success form-control">Mostrar grafica</button>
+            <button class="btn btn-success form-control" (click)="mostrarGrafica()" data-bs-toggle="modal" data-bs-target="#nuevoUsuarioModal">Mostrar grafica</button>
           </div>
         </div>
       </div>
@@ -31,7 +31,7 @@
         <div class="d-flex">
           <button class="flex-shrink-0"  (click)="animation()"><i id="play-pause"  class="bi bi-play"></i></button>
           <div class="flex-grow-1">
-            <input type="range" (change)="animation()" class="w-100" list="rangos" id="progress" value="0" step="1" min="0" max="24">
+            <input type="range" (change)="animation()" class="w-100" list="rangos" #progress id="progress" value="0" step="1" min="0" max="24">
             <datalist id="rangos" class="ms-1 w-100 d-flex flex-row justify-content-between sm:hidden">
               <option value="0">0am</option>
               <option value="6">6am</option>
@@ -42,5 +42,23 @@
           </div> 
         </div>
     </div>
+</div>
+
+<div class="modal fade" id="nuevoUsuarioModal" aria-labelledby="nuevoUsuarioModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Grafica de pronostico</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <img id="graficSource" class="img-fluid" alt="">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
 </div>
 <app-footer></app-footer>

@@ -19,13 +19,13 @@ export class FormOlvidePasswordComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  encontrarUsuario() {
+  encontrarUsuario(): void {
 
     if(this.formEmailReset.invalid) {
         Swal.fire('Error', 'Email no valido', 'error')
         return
     }
-    this.pronosticoService.buscarEmail(this.formEmailReset.value.correo).subscribe((resp:any) => {
+    this.pronosticoService.buscarEmail(this.formEmailReset.value.correo).subscribe(resp => {
         Swal.fire('Encontrado', resp.mensaje, 'success')
     }, error => {
         console.log(error)

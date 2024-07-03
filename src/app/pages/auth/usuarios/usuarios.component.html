@@ -4,7 +4,7 @@
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#nuevoUsuarioModal">
        Nuevo Usuario
     </button>
-    <button type="button" class="btn btn-warning ms-3">Bitacora</button>
+    <button type="button" class="btn btn-warning ms-3" data-bs-toggle="modal" data-bs-target="#bitacoraModal">Bitacora</button>
     <table class="table table-bordered mt-4">
         <thead>
           <tr>
@@ -58,4 +58,37 @@
           </div>
         </div>
     </div>
+
+    <div class="modal fade" id="bitacoraModal" tabindex="-1" aria-labelledby="bitacoraModal" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Bitacora</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <table class="table table-bordered mt-4">
+              <thead>
+                <tr>
+                  <th>Fecha</th>
+                  <th>Accion</th>
+                  <th>Nombre</th>
+                  <th>Correo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let data of bitacora">
+                  <td>{{data.fecha}}</td>
+                  <td>{{data.accion}}</td>
+                  <td>{{data.usuario.nombre}}</td>
+                  <td>{{data.usuario.email}}</td>
+                </tr>
+              </tbody>
+          </table>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+      </div>
+  </div>
 </div>

@@ -39,7 +39,7 @@ export class DatabaseComponent implements OnInit {
       cancelButtonText: "Cancelar"
     }).then((result) => {
       if (result.isConfirmed) {
-         this.pronosticoService.eliminarPronostico(fecha, result.value).subscribe((resp:any) => {
+         this.pronosticoService.eliminarPronostico(fecha, result.value).subscribe(resp => {
             Swal.fire('¡Eliminado!', resp.mensaje, 'success')
             this.pronosticos()
          }, error => {
@@ -68,7 +68,7 @@ export class DatabaseComponent implements OnInit {
     this.pronosticoService.obtenerPronosticoTs(fecha).subscribe(datos => {
       datos.propiedades.forEach(element => {
         a.href = `${this.url}/Uploads/${fecha}/${element.archivo}`
-        a.download= element.archivo
+        a.download = element.archivo
         a.click();
       })
       datos.graficas.forEach(element => {

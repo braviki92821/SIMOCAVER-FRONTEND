@@ -35,7 +35,7 @@ export class ResetPasswordComponent implements OnInit {
       return
     }
 
-    this.pronosticoService.resetPassword(this.formNewPassword.value, this.token).subscribe((resp:any) =>{
+    this.pronosticoService.resetPassword(this.formNewPassword.value, this.token).subscribe(resp =>{
        Swal.fire('Correcto', resp.mensaje, 'success')
     }, error => {
        Swal.fire('Error', error.erro.mensaje,'error')
