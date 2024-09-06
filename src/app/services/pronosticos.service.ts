@@ -147,7 +147,11 @@ export class PronosticosService {
   }
 
   obtenerBitacora(): Observable<Bitacora[]> {
-   return this.http.get<Bitacora[]>(`${url}/bitacora`)
+   return this.http.get<Bitacora[]>(`${url}/bitacora`, {
+    headers: {
+      "Authorization" : `Bearer ${localStorage.getItem('token')}`
+    }
+  })
   }
 
 }
