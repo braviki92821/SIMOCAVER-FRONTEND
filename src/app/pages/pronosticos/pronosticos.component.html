@@ -14,7 +14,7 @@
           </div>
           <div class="mb-3">
             <label class="form-label">Selecciona variable</label>
-            <select class="form-control" (change)="seleccionTest()">
+            <select class="form-control" (change)="seleccionTest()" id="variable">
               <option value="T2">Temperatura</option>
               <option value="Ozono">ozono</option>
               <option value="Pm10">Pm10</option>
@@ -22,7 +22,7 @@
             </select>
           </div>
           <div class="mb-3">
-            <button class="btn btn-success form-control" #grafica (click)="mostrarGrafica()" data-bs-toggle="modal" data-bs-target="#nuevoUsuarioModal">Mostrar grafica</button>
+            <button class="btn btn-success form-control"  (click)="mostrarGrafica()" data-bs-toggle="modal" data-bs-target="#nuevoUsuarioModal">Mostrar grafica</button>
           </div>
         </div>
       </div>

@@ -11,7 +11,6 @@ import { environment } from 'src/environments/environment';
 export class PronosticosComponent implements OnInit {
 
   public fecha: HTMLInputElement
-  @ViewChild('grafica') variableElement!: ElementRef<HTMLButtonElement>
   public btnPlay: HTMLInputElement
   public btnPause: HTMLElement
   public imgSource: HTMLImageElement
@@ -35,8 +34,8 @@ export class PronosticosComponent implements OnInit {
     this.variable = <HTMLSelectElement> document.getElementById('variable')
     this.fecha.value = this.fechaActual
     this.seleccionTest()
-    this.variableElement.nativeElement.textContent = "eewe"
   }
+  
   animation(): void {
 
     if(typeof this.time === "undefined" && this.pronostico.length != 0) {
@@ -86,6 +85,7 @@ export class PronosticosComponent implements OnInit {
     }
 
     this.pronosticoService.obtenerPronosticoTs(this.fecha.value).subscribe(datos => {
+
       if(datos === null) { 
         this.pronostico = datos
         this.grafica = datos
