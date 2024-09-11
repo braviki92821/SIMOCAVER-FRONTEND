@@ -143,7 +143,11 @@ export class PronosticosService {
     for(let file of files) {
       formData.append('archivo', file)
     }
-    return this.http.post<Response>(`${url}/imagenes/${fecha}`, formData)
+    return this.http.post<Response>(`${url}/imagenes/${fecha}`, formData, {
+      headers: {
+        "Authorization" : `Bearer ${localStorage.getItem('token')}`
+      }
+    })
   }
 
   obtenerBitacora(): Observable<Bitacora[]> {

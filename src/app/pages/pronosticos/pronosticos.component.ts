@@ -1,4 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Animacion } from 'src/app/interfaces/Animacion.interface';
+import { Grafica } from 'src/app/interfaces/Grafica.interface';
 import { PronosticosService } from 'src/app/services/pronosticos.service';
 import { environment } from 'src/environments/environment';
 
@@ -18,8 +20,8 @@ export class PronosticosComponent implements OnInit {
   public variable: HTMLSelectElement
   public fechaActual = new Date().toISOString().split('T')[0];
   public time: any
-  private pronostico: any
-  private grafica: any
+  private pronostico: Animacion[]
+  private grafica: Grafica[]
   private url = environment.urlBackend
 
   constructor(private pronosticoService: PronosticosService) { 
@@ -59,11 +61,9 @@ export class PronosticosComponent implements OnInit {
       this.btnPlay.value = cont.toString()
       this.imgSource.src = `${this.url}/uploads/${this.fecha.value}/${file}`
       cont++
-      if(cont === 24) {
-        //clearInterval(t)
+      if(cont === 25) {
         this.btnPlay.value = '0'
         cont = 0
-        //this.time = undefined
       }
     }, 1000)
     return t
@@ -87,8 +87,8 @@ export class PronosticosComponent implements OnInit {
     this.pronosticoService.obtenerPronosticoTs(this.fecha.value).subscribe(datos => {
 
       if(datos === null) { 
-        this.pronostico = datos
-        this.grafica = datos
+        this.pronostico = []
+        this.grafica = []
         this.btnPlay.value = '0'
         this.imgSource.src = './assets/NoImage.jpg'
         this.graficaSourse.src =  './assets/NoImage.jpg'
@@ -105,18 +105,18 @@ export class PronosticosComponent implements OnInit {
         return
       }
       
-      this.pronostico = this.pronostico.sort((a:any, b:any) => a.hora - b.hora )
+      this.pronostico = this.pronostico.sort((a, b) => a.hora - b.hora )
       this.animation()
     })
   }
 
   mostrarGrafica(): void {
-    console.log(this.grafica)
-     if(this.grafica === null){
+    if(this.grafica.length === 0){
       this.graficaSourse.src =  './assets/NoImage.jpg'
       return
-     }
-     this.graficaSourse.src = `${this.url}/uploads/${this.fecha.value}/${this.grafica[0].archivo}` 
+    }
+     
+    this.graficaSourse.src = `${this.url}/uploads/${this.fecha.value}/${this.grafica[0].archivo}`     
   }
 }
 

@@ -64,30 +64,22 @@ export class DatabaseComponent implements OnInit {
   }
 
   descargarImagenes(fecha:string) {
-    const a = document.createElement("a");
-    this.pronosticoService.obtenerPronosticoTs(fecha).subscribe(datos => {
-      datos.propiedades.forEach(element => {
-        a.href = `${this.url}/Uploads/${fecha}/${element.archivo}`
-        a.download = element.archivo
-        a.click();
-      })
-      datos.graficas.forEach(element => {
-        a.href = `${this.url}/Uploads/${fecha}/${element.archivo}`
-        a.download= element.archivo
-        a.click();
-      })
-    })
+      const a = document.createElement("a");
+      a.target = "_blank"
+      a.href = `${this.url}/download/${fecha}`
+      a.download
+      a.click();
   }
 
   subirImagenes(fecha:string) {
     const input = document.createElement('input')
     input.type = "file"
     input.multiple = true
+    input.accept = "image/*"
     input.click()
     input.addEventListener('change', (e:any) => {
-        console.log(e.target.files)
-        this.pronosticoService.subirImagenes(fecha, e.target.files).subscribe((resp:any) =>{
-          Swal.fire('Correcto', resp.mensaje, 'error')
+        this.pronosticoService.subirImagenes(fecha, e.target.files).subscribe(resp =>{
+          Swal.fire('Correcto', resp.mensaje, 'success')
         }, error => {
           Swal.fire('Error', error.error.mensaje, 'error')
         })
