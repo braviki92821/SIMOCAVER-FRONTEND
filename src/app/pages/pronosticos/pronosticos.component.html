@@ -1,22 +1,22 @@
 <app-header></app-header>
 <div class="container">
     <br>
-    <h4 class="text-center">Conoce los pronosticos que determinan la calidad del aire y otros factores</h4>
+    <h4 class="text-center">Conoce los pronósticos que determinan la calidad del aire y otros factores</h4>
     <br>
-    <p>Seleccione una variable y fecha para ver el pronostico</p>
+    <p>Seleccione una variable y fecha para ver el pronóstico</p>
     <br>
     <div class="row">
       <div class="col-4 border border-secondary">
         <div>
           <div class="mb-3">
-            <label class="form-label">Selecciona una fecha (por defecto carga el pronostico de hoy)</label>
+            <label class="form-label">Selecciona una fecha (por defecto carga el pronóstico de hoy)</label>
             <input type="date" class="form-control" id="fecha"  (change)="seleccionTest()">
           </div>
           <div class="mb-3">
             <label class="form-label">Selecciona variable</label>
             <select class="form-control" (change)="seleccionTest()" id="variable">
               <option value="T2">Temperatura</option>
-              <option value="Ozono">ozono</option>
+              <option value="Ozono">Evaluación de pronóstico red neuronal</option>
               <option value="Pm10">Pm10</option>
               <option value="Pm2.5">Pm2.5</option>
             </select>
@@ -31,13 +31,13 @@
         <div class="d-flex">
           <button class="flex-shrink-0"  (click)="animation()"><i id="play-pause"  class="bi bi-play"></i></button>
           <div class="flex-grow-1">
-            <input type="range" (change)="animation()" class="w-100" list="rangos" #progress id="progress" value="0" step="1" min="0" max="24">
+            <input type="range" (change)="animation()" class="w-100" list="rangos" #progress id="progress" value="0" step="1" min="0" max="23">
             <datalist id="rangos" class="ms-1 w-100 d-flex flex-row justify-content-between sm:hidden">
               <option value="0">0am</option>
               <option value="6">6am</option>
               <option value="12">12pm</option>
               <option value="18">18pm</option>
-              <option value="24">24pm</option>
+              <option value="23">23pm</option>
             </datalist>
           </div> 
         </div>
@@ -48,7 +48,7 @@
   <div class="modal-dialog modal-dialog-centered modal-xl">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Grafica de pronostico</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Evaluación de pronóstico: Estación Poza Rica</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">

@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Animacion } from 'src/app/interfaces/Animacion.interface';
 import { Grafica } from 'src/app/interfaces/Grafica.interface';
 import { PronosticosService } from 'src/app/services/pronosticos.service';
@@ -61,7 +61,7 @@ export class PronosticosComponent implements OnInit {
       this.btnPlay.value = cont.toString()
       this.imgSource.src = `${this.url}/uploads/${this.fecha.value}/${file}`
       cont++
-      if(cont === 25) {
+      if(cont === 24) {
         this.btnPlay.value = '0'
         cont = 0
       }

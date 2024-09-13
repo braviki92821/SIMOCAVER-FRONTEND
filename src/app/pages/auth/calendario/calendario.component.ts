@@ -5,6 +5,7 @@ import { PronosticosService } from 'src/app/services/pronosticos.service';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { Router } from '@angular/router';
+import { Eventos } from 'src/app/interfaces/Eventos.interface';
 
 @Component({
   selector: 'app-calendario',
@@ -13,7 +14,7 @@ import { Router } from '@angular/router';
 })
 export class CalendarioComponent implements OnInit {
 
-  public events: any = []
+  public events: Eventos[]
   calendarOptions: CalendarOptions
 
   constructor(private pronosticoService: PronosticosService, private router: Router) { }
